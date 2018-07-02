@@ -30,12 +30,19 @@ class Comment:
 
 
 @click.command()
-@click.option('--id', prompt=True, help='eg Comment(your_id, "Your comment message")')
+@click.option('--comment_id', prompt=True, help='eg Comment(your_id, "Your comment message")')
 @click.option('--message', prompt=True, help='eg Comment(your_id, "Your comment message")')
 def create_comment(id, message):
     comment = Comment(id, message)
     click.echo("Comments: %s" % Comment.create(comment))
 
+
+def delete_comment(comment_id):
+    for comment in comments:
+        if comment.get("comment_id") == comment_id:
+            comments.pop(comment)
+            click.echo ("comment deleted")
+    click.echo ("comment deleted")
 
 if __name__ == '__main__':
     create_comment()
